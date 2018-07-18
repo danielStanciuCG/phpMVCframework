@@ -7,7 +7,7 @@
 class Core {
     protected $currentController = "Pages";
     protected $currentMethod = "index";
-    protected $paramas = [];
+    protected $params = [];
 
     /**
      * Core constructor - initialises the application
@@ -16,7 +16,7 @@ class Core {
         //print_r($this->getURL());
         $url = $this->getURL();
 
-        //Look in controllers for first value
+        //Use the first item in the array to get the controller
         if (file_exists("../app/controllers/" . ucwords($url[0]) . ".php")) {
             //If exists, set as controller
             $this->currentController = ucwords($url[0]);
@@ -28,6 +28,26 @@ class Core {
         //Require and instantiate the controller
         require_once "../app/controllers/" . $this->currentController . ".php";
         $this->currentController = new $this->currentController;
+
+        //Use the second item in the array to get the method
+        if (isset($url[1])) {
+            //Check if method exists in the controller
+            if (method_exists($this->currentController, $url[1])) {
+                $this->currentMethod = $url[1];
+            }
+
+            //Unset 1 Index
+            unset($url[1]);
+        }
+
+        //Get parameters
+        $this->params = $url ? array_values($url) : [];
+
+        //Call a callback with array of parameters
+        call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
+
+        //Call method
+        //$this->currentController->$this->currentMethod;
     }
 
     /** Returns the URL paramaters.
