@@ -11,11 +11,15 @@ class Controller {
      * @return mixed - the instantiated model
      */
     public function loadModel($model) {
-        //Require model file
-        require_once "../app/" . $model . ".php";
+       if(file_exists("../app/models/" . $model . ".php")) {
+           //Require model file
+           require_once "../app/models/" . $model . ".php";
 
-        //Instantiate model
-        return new $model();
+           //Instantiate model
+           return new $model();
+       } else {
+           die("Model does not exist");
+       }
     }
 
     /**

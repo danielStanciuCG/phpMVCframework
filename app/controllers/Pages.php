@@ -1,13 +1,17 @@
 <?php
 
 class Pages extends Controller {
-    public function __construct() {
+    private $model;
 
+    public function __construct() {
+        $this->model = $this->loadModel("Post");
     }
 
     public function index() {
+        $posts = $this->model->getPosts();
         $data = [
-            "title" => "Welcome"
+            "title" => "Welcome",
+            "posts" => $posts
         ];
         $this->loadView("pages/index", $data);
     }
