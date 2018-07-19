@@ -1,12 +1,12 @@
 <?php
 //Database parameters
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "123456");
-define("DB_NAME", "mvcframework");
+define("DB_HOST", "_FILL_IN_");
+define("DB_USER", "_FILL_IN_");
+define("DB_PASS", "_FILL_IN_");
+define("DB_NAME", "_FILL_IN_");
 // App root
 define("APP_ROOT", dirname(dirname(__FILE__)));
 //URL root
-define("URL_ROOT", "http://localhost:8080/mvcframework");
+define("URL_ROOT", "_FILL_IN_");
 //Site name
-define("SITE_NAME", "MVC Framework");
+define("SITE_NAME", "_FILL_IN_");
