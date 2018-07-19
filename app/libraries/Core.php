@@ -45,9 +45,6 @@ class Core {
 
         //Call a callback with array of parameters
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
-
-        //Call method
-        //$this->currentController->$this->currentMethod;
     }
 
     /** Returns the URL paramaters.
